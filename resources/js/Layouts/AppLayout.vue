@@ -226,9 +226,12 @@
                     </div>
             
                     <nav class="mt-10">
-
+                        
                         <!-- Navigation Links -->                        
-                        <jet-nav-link  :href="route('dashboard')" :active="route().current('dashboard')" class="flex items-center mt-4 py-2 px-6 bg-gray-700 bg-opacity-25 text-gray-100">                        
+                        <jet-nav-link  :href="route('dashboard')" :active="route().current('dashboard')" 
+                        :class="pathname  == '/dashboard' ? 'flex items-center mt-4 py-2 px-6 bg-gray-700 bg-opacity-25 text-gray-100' :
+                        'flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100'
+                        ">                        
                             <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -239,7 +242,10 @@
                             <span class="mx-3">Dashboard</span>
                         </jet-nav-link>                                                                        
                         
-                        <jet-nav-link  :href="route('groups.index')" :active="route().current('groups.*')" class="flex items-center mt-4 py-2 px-6 bg-gray-700 bg-opacity-25 text-gray-100">                        
+                        <jet-nav-link  :href="route('groups.index')" :active="route().current('groups.*')" 
+                        :class="pathname == '/dashboard/groups' ? 'flex items-center mt-4 py-2 px-6 bg-gray-700 bg-opacity-25 text-gray-100' :
+                        'flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100'
+                        ">
                             <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -249,6 +255,18 @@
                             </svg>            
                             <span class="mx-3">Grupo-Parametro</span>
                         </jet-nav-link>                                                                        
+
+                        <!-- <a class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100"
+                            href="/tables">
+                            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10">
+                                </path>
+                            </svg>
+            
+                            <span class="mx-3">Tables</span>
+                        </a> -->
 
                     </nav>
                 </div>
@@ -362,14 +380,14 @@
                     </header>
                     <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
                         <div class="container mx-auto px-6 py-8">
-                            <h3 class="text-gray-700 text-3xl font-medium">Dashboard</h3>
+                            <!-- <h3 class="text-gray-700 text-3xl font-medium">Dashboard</h3> -->
 
                                     <!-- Page Heading -->
-                                    <header class="bg-white shadow" v-if="$slots.header">
+                                    <!-- <header class="bg-white shadow" v-if="$slots.header">
                                         <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                                             <slot name="header"></slot>
                                         </div>
-                                    </header>
+                                    </header> -->
 
                                     <!-- Page Content -->
                                     <main>
@@ -406,6 +424,7 @@
         data() {
             return {
                 showingNavigationDropdown: false,
+                pathname: window.location.pathname,
             }
         },
 

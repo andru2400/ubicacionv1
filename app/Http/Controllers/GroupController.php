@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use App\Models\Group;
 
 class GroupController extends Controller
 {
@@ -14,8 +15,9 @@ class GroupController extends Controller
      */
     public function index()
     {
+        $groups = Group::with('parameters')->get();
         return Inertia::render('Groups/Index', [
-            'groups' => "Gruposx"
+            'groups' => $groups
         ]);        
     }
 
@@ -25,8 +27,11 @@ class GroupController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
+    {   
+        $groups = Group::with('parameters')->get();
+        return Inertia::render('Groups/Create',[
+            'groups' => $groups
+        ]);        
     }
 
     /**
@@ -37,7 +42,12 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $request->validate([
+        //     'excerpt' => 'required',
+        //     'content' => 'required',
+        // ]);
+        $group = Group::create($request->all());
+        return redirect()->route('groups.edit', $group->id)->with('status', 'Nota creada');
     }
 
     /**
