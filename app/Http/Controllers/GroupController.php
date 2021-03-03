@@ -42,6 +42,7 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request->all());
         // $request->validate([
         //     'excerpt' => 'required',
         //     'content' => 'required',
